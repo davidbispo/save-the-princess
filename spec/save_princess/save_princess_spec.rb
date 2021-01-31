@@ -2,28 +2,16 @@ require_relative '../../app/save_princess.rb'
 require 'byebug'
 
 RSpec.describe SavePrincess do
-  let(:input) { 
-   "3
-   ---
-   -m-
-   p--"
-   }
+  let(:n_rows) { 3 }
+  let(:grid) { ["---", "-m-", "p--"] }
 
-   let(:result){
-     "DOWN
-      LEFT"
-   }
-
-  describe '#parse_board'
-  context "first test" do
-  let(:title) { "A new Task" }
-
-    it 'Parses the board' do
-      result = {
-        'player' => [1, 1],
-        "princess" => [2, 0]
-      }
-      expect(described_class.parse_board(input)).to match(result)
+  describe '#displayPathtoPrincess'
+  context "when a correct input is passed" do
+    it 'Rescues the princess' do
+      result = "DOWN\nLEFT\n"
+      expect do
+        described_class.displayPathtoPrincess(n_rows, grid)
+      end.to output(result).to_stdout
     end
   end
 end
