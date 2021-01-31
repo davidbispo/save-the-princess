@@ -1,14 +1,12 @@
 require_relative '../../app/save_princess.rb'
+require 'byebug'
 
 RSpec.describe SavePrincess do
   let(:input) { 
-   "5
-    2 3
-    -----
-    -----
-    p--m-
-    -----
-    -----"
+   "3
+   ---
+   -m-
+   p--"
    }
 
    let(:result){
@@ -21,7 +19,11 @@ RSpec.describe SavePrincess do
   let(:title) { "A new Task" }
 
     it 'Parses the board' do
-      expect(described_class.parse_board(input)).to eq(result)
+      result = {
+        'player' => [1, 1],
+        "princess" => [2, 0]
+      }
+      expect(described_class.parse_board(input)).to match(result)
     end
   end
 end
