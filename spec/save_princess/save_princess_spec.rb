@@ -3,15 +3,47 @@ require 'byebug'
 
 RSpec.describe SavePrincess do
   let(:n_rows) { 3 }
-  let(:grid) { ["---", "-m-", "p--"] }
 
-  describe '#displayPathtoPrincess'
-  context "when a correct input is passed" do
-    it 'Rescues the princess' do
-      result = "DOWN\nLEFT\n"
-      expect do
-        described_class.displayPathtoPrincess(n_rows, grid)
-      end.to output(result).to_stdout
+  def assert(args, result)
+    expect do
+      described_class.displayPathtoPrincess(*args)
+    end.to output(result).to_stdout
+  end
+
+  describe '#displayPathtoPrincess' do
+    context 'when in a simple 3x3 grid' do
+      context "when princess is up and left" do
+        let(:args) { [ n_rows, ["p--", "-m-", "---"] ] }
+        let(:expected_result) { "UP\nLEFT\n" }
+
+        it 'Rescues the princess' do
+          assert(args, expected_result)
+        end
+      end
+      context "when princess is up and right" do
+        let(:args) { [ n_rows, ["--p", "-m-", "---"] ] }
+        let(:expected_result) { "UP\nRIGHT\n" }
+
+        it 'Rescues the princess' do
+          assert(args, expected_result)
+        end
+      end
+      context "when princess is up and left" do
+        let(:args) { [ n_rows, ["---", "-m-", "p--"] ] }
+        let(:expected_result) { "DOWN\nLEFT\n" }
+
+        it 'Rescues the princess' do
+          assert(args, expected_result)
+        end
+      end
+      context "when princess is down and right" do
+        let(:args) { [ n_rows, ["---", "-m-", "--p"] ] }
+        let(:expected_result) { "DOWN\nRIGHT\n" }
+
+        it 'Rescues the princess' do
+          assert(args, expected_result)
+        end
+      end
     end
   end
 end

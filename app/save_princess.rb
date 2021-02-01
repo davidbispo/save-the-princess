@@ -6,8 +6,8 @@ class SavePrincess
       board_rows.each_with_index do |row, row_index|
         princess_col, player_col = [ row.index('p'), row.index('m') ]
 
-        coordinates['player'] = [row_index, player_col] unless !player_col
-        coordinates['princess'] = [row_index, princess_col] unless !princess_col
+        coordinates['player'] = [player_col, row_index] unless !player_col
+        coordinates['princess'] = [princess_col, row_index] unless !princess_col
       end
       player_x, player_y = coordinates['player']
       pr_x, pr_y = coordinates['princess']
@@ -18,7 +18,7 @@ class SavePrincess
       moves = []
 
       (1..delta_y.abs).each do |n|
-        if delta_y > 0
+        if delta_y < 0
           moves << "UP\n"
           next
         end
@@ -26,7 +26,7 @@ class SavePrincess
       end
 
       (1..delta_x.abs).each do |n|
-        if delta_x > 0
+        if delta_x < 0
           moves << "LEFT\n"
           next
         end
