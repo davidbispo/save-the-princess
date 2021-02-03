@@ -3,8 +3,7 @@ class SavePrincessTwo
   class << self
     def nextMove(n,r,c,grid)
       coordinates = {}
-      raw = grid.split("\n")
-      board_rows = raw.collect{ |e| e ? e.strip : e }
+      board_rows = grid.collect{ |e| e ? e.strip : e }
       board_rows.each_with_index do |row, row_index|
         princess_col, player_col = [ row.index('p'), row.index('m') ]
 
@@ -34,7 +33,6 @@ class SavePrincessTwo
         can_go_to = []
         can_go_to << get_directions_y.call(delta_y)
         can_go_to << get_directions_x.call(delta_x)
-        byebug
         move = can_go_to.sample
       end
 

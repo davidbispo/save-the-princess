@@ -17,7 +17,7 @@ RSpec.describe SavePrincessTwo do
   describe '#next_move'
   context "can only move in one direction with an obvious direction" do
     context "and direction is left" do
-      let(:grid) { "-----\n-----\np--m-\n-----\n-----" }
+      let(:grid) { "-----\n-----\np--m-\n-----\n-----".split("\n") }
 
       it 'goes left' do
         result = "LEFT"
@@ -25,7 +25,7 @@ RSpec.describe SavePrincessTwo do
       end
     end
     context "and direction is right" do
-      let(:grid) { "-----\n-----\nm--p-\n-----\n-----" }
+      let(:grid) { "-----\n-----\nm--p-\n-----\n-----".split("\n") }
       let(:result) { "RIGHT" }
 
       it 'goes right' do
@@ -34,7 +34,7 @@ RSpec.describe SavePrincessTwo do
     end
 
     context "and direction is up" do
-      let(:grid) { "-----\n-----\n---p-\n-----\n---m-" }
+      let(:grid) { "-----\n-----\n---p-\n-----\n---m-".split("\n") }
       let(:result) { "UP" }
 
       it 'goes up' do
@@ -42,7 +42,7 @@ RSpec.describe SavePrincessTwo do
       end
     end
     context "and direction is down" do
-      let(:grid) { "-----\n-----\n---m-\n-----\n---p-" }
+      let(:grid) { "-----\n-----\n---m-\n-----\n---p-".split("\n") }
       let(:result) { "DOWN" }
 
       it 'goes down' do
@@ -52,7 +52,7 @@ RSpec.describe SavePrincessTwo do
   end
   context "can move in multiple directions" do
     context "and there is a shorter move available" do
-      let(:grid) { "----p\n-----\n-----\n-----\n---m-" }
+      let(:grid) { "----p\n-----\n-----\n-----\n---m-".split("\n") }
 
       it 'seeks to reduce distance on largest dx axis' do
         result = "UP"
@@ -60,7 +60,7 @@ RSpec.describe SavePrincessTwo do
       end
     end
     context "and dx and dy are equidistant" do
-      let(:grid) { "p----\n-----\n-----\n-----\n----m" }
+      let(:grid) { "p----\n-----\n-----\n-----\n----m".split("\n") }
       it 'goes to a random direction that makes sense' do
         result = described_class.nextMove(n,r,c,grid)
         expected = [ "UP" , "LEFT" ]
