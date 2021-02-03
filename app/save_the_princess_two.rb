@@ -1,5 +1,5 @@
 
-class SavePrincessTwo
+class SaveThePrincessTwo
   class << self
     def nextMove(n,r,c,grid)
       coordinates = {}

@@ -1,4 +1,4 @@
-class SavePrincess
+class SaveThePrincess
   class << self
     def displayPathtoPrincess(n, grid)
       board_rows = grid.collect{ |e| e ? e.strip : e }

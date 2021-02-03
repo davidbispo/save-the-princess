@@ -1,7 +1,7 @@
-require_relative '../../app/save_princess.rb'
+require_relative '../../app/save_the_princess.rb'
 require 'byebug'
 
-RSpec.describe SavePrincess do
+RSpec.describe SaveThePrincess do
   let(:n_rows) { 3 }
 
   def assert(args, result)

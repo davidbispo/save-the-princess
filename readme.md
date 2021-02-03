@@ -15,8 +15,8 @@ gem install bundler && bundle install
 2. On the same terminal:
 ```
 rspec spec
-rspec spec/save_princess/save_princess_two_spec.rb
-rspec spec/save_princess/save_princess_spec.rb
+rspec spec/save_princess/save_the_princess_spec.rb
+rspec spec/save_princess/save_the_princess_two_spec.rb
 ```
 
 # Rationale behind the solutions:

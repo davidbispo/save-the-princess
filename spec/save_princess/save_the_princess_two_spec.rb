@@ -1,7 +1,7 @@
 require 'byebug'
-require_relative '../../app/save_princess_two.rb'
+require_relative '../../app/save_the_princess_two.rb'
 
-RSpec.describe SavePrincessTwo do
+RSpec.describe SaveThePrincessTwo do
   let(:n_rows) { 3 }
   let(:n) { 5 }
   let(:r) { 2 }
