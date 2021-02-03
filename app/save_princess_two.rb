@@ -22,13 +22,11 @@ class SavePrincessTwo
       get_directions_y = ->(dy) { dy < 0 ? 'UP' : 'DOWN' }
 
       if !hor_mov_necessary && ver_mov_necessary
-        # return delta_y < 0 ? print('UP') : print('DOWN')
-        return get_directions_y.call(delta_y)
+        move = get_directions_y.call(delta_y)
       end
 
       if !ver_mov_necessary && hor_mov_necessary
-        # return delta_x < 0 ? print('LEFT') : print('RIGHT')
-        return get_directions_x.call(delta_x)
+        move = get_directions_x.call(delta_x)
       end
 
       is_equidistant_from_princess = delta_x.abs == delta_y.abs
@@ -36,13 +34,16 @@ class SavePrincessTwo
         can_go_to = []
         can_go_to << get_directions_y.call(delta_y)
         can_go_to << get_directions_x.call(delta_x)
-        return can_go_to.sample
+        byebug
+        move = can_go_to.sample
       end
 
       largest_distance_position = [ delta_x, delta_y ].map(&:abs).each_with_index.max[1]
-      return largest_distance_position == 0 ?
+      move = largest_distance_position == 0 ?
         get_directions_x.call(delta_x) :
         get_directions_y.call(delta_y)
+      print(move)
+      return (move)
     end
   end
 end

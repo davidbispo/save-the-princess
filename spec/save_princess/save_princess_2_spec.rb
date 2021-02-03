@@ -6,6 +6,13 @@ RSpec.describe SavePrincessTwo do
   let(:n) { 5 }
   let(:r) { 2 }
   let(:c) { 3 }
+  let(:args) { [ n,r,c,grid ] }
+
+  def assert(args, result)
+    expect do
+      described_class.nextMove(n,r,c,grid)
+    end.to output(result).to_stdout
+  end
 
   describe '#next_move'
   context "can only move in one direction with an obvious direction" do
@@ -14,7 +21,7 @@ RSpec.describe SavePrincessTwo do
 
       it 'goes left' do
         result = "LEFT"
-        expect(described_class.nextMove(n,r,c,grid)).to match(result)
+        assert(args,result)
       end
     end
     context "and direction is right" do
@@ -22,7 +29,7 @@ RSpec.describe SavePrincessTwo do
       let(:result) { "RIGHT" }
 
       it 'goes right' do
-        expect(described_class.nextMove(n,r,c,grid)).to match(result)
+        assert(args,result)
       end
     end
 
@@ -31,7 +38,7 @@ RSpec.describe SavePrincessTwo do
       let(:result) { "UP" }
 
       it 'goes up' do
-        expect(described_class.nextMove(n,r,c,grid)).to match(result)
+        assert(args,result)
       end
     end
     context "and direction is down" do
@@ -39,7 +46,7 @@ RSpec.describe SavePrincessTwo do
       let(:result) { "DOWN" }
 
       it 'goes down' do
-        expect(described_class.nextMove(n,r,c,grid)).to match(result)
+        assert(args,result)
       end
     end
   end
@@ -49,18 +56,15 @@ RSpec.describe SavePrincessTwo do
 
       it 'seeks to reduce distance on largest dx axis' do
         result = "UP"
-        expect(described_class.nextMove(n,r,c,grid)).to match(result)
+        assert(args,result)
       end
     end
     context "and dx and dy are equidistant" do
       let(:grid) { "p----\n-----\n-----\n-----\n----m" }
       it 'goes to a random direction that makes sense' do
-        results = []
-        (1..50).each do
-          results << described_class.nextMove(n,r,c,grid)
-        end
+        result = described_class.nextMove(n,r,c,grid)
         expected = [ "UP" , "LEFT" ]
-        expect(results.uniq).to match_array(expected)
+        expect(expected).to include(result)
       end
     end
   end
